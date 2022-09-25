@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+
+class SwapAllOddAndEvenBits {
+
+    // // 
+    // static long decToBinary(long n){
+    //     long bnum=0;
+    //     long product=1;
+    //     while (n > 0) {
+    //         long bit = n % 2;    
+    //         bnum=(bit*product)+bnum;
+    //         n = n / 2;     
+    //         product*=10;   
+    //     }
+    //     return bnum;
+    // }
+    // //
+    // static long binaryToDec(long n){
+    //     long decNum=0;
+    //     long product=1;
+    //     while (n > 0) {
+    //         long bit = n % 10;  
+    //         decNum=(bit*product)+decNum;
+    //         n = n / 10;      
+    //         product*=2;   
+    //     }
+    //     return decNum;
+    // }
+    //
+    public long swapBits(long bnum) {
+        //long bnum=decToBinary(n);
+        for(long i=31;i>0;i=i-2){
+            long a=(bnum & (1L<<i)) >0? 1:0;
+            long b=(bnum & (1L<<i-1))  >0? 1:0;
+            if(a!=b){
+                bnum=bnum^(1L<<i);
+                bnum=bnum^(1L<<i-1);
+            }            
+        }
+         //long decNum=binaryToDec(bnum);
+        return bnum;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long n = scanner.nextLong();
+        scanner.close();
+        long result = new SwapAllOddAndEvenBits().swapBits(n);
+        System.out.println(result);
+    }
+}
